@@ -10,6 +10,8 @@ Accounts Payable for German companies. This module adds functionality beyond the
 The module extends the standard Odoo CoA to include Partner-specific Accounts (PSA) for Accounts Receivable and Accounts Payable. 
 These accounts will be used to store income and expenditures related to specific business partners.
 
+User can choose to either use PSA or Odoo's default CoA to store Incomes and Expenditures, specific to the partner.
+
 ### Create Partner-specific Accounts Button
 A new button, "Create Partner-specific Accounts", will be added under `Contact > Invoicing (tab) > Accounting Entries`. 
 This button will trigger the creation of a new set of Partner-specific Accounts in the extended CoA for the selected business partner.
@@ -34,9 +36,33 @@ This button will trigger the creation of a new set of Partner-specific Accounts 
 - **Permissions**: Only users with accounting permissions can see and use this button.
 
 ### Customer Invoices and Vendor Bills
-- If PSA are available, store Accounts Recievable and Accounts Payable in them.
+
+Provide a selection right under the Invoices tab on partner view called “Use Partner Specific Accounts”
+
+If True, then Incomes and Receivables will be posted to the new PSA, assuming they are created. If not yet created, there should be an option to create them.
+
+If False, then Incomes and Receivables will be posted to the default Odoo Accounts (from default CoA).
 
 ## Non-Functional Specifications
 - **Performance**: The module should not significantly impact the performance of the Odoo system. Creating Partner-specific Accounts should take less than 1 second under normal system load.
-- **Usability**: The "Create Partner-specific Accounts" button should be clearly visible and conveniently located under Contact > Invoicing > Accounting Entries.
-- **Security**: Only users with the necessary permissions should be able to create Partner-specific Accounts.
+- **Usability**: 
+    - Create as few as possible new UI elements. Integrate to the maximum extent into existing Odoo UIs.
+    - The "Create Partner-specific Accounts" button should be clearly visible and conveniently located under Contact > Invoicing > Accounting Entries.
+- **Security**: Only users with the Sales Manager and Accounting Admin should be able to create Partner-specific Accounts.
+
+---
+# Q&A from Developers
+Previous developers asked these questions.
+
+> 1. If a partner already had Accounts Receivable and Accounts Payable like this, do we allow the user to create Partner-specific Accounts for this partner? 
+
+Yes of course.
+That’s the point of this module.
+
+Odoo’s Accounting works by assigning generic accounts, in the above example 1410 for Accounts Payable and 1610 for Accounts Payable.
+Generic = every partner’s recievables and payables are stored under these account numbers.
+
+The point of the partner_accounts module is to have specific account numbers for partner specific receivables and payables.
+
+Please remember!!
+that revenues (Customer Invoices) and expenditures (Vendor Bills) should be posted to these new Partner Accounts.
