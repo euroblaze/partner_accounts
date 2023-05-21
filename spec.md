@@ -39,9 +39,11 @@ This button will trigger the creation of a new set of Partner-specific Accounts 
 
 Provide a selection right under the Invoices tab on partner view called “Use Partner Specific Accounts”
 
-If True, then Incomes and Receivables will be posted to the new PSA, assuming they are created. If not yet created, there should be an option to create them.
+- If True, then Incomes and Receivables will be posted to the new PSA, assuming they are created. If not yet created, they can be created by using the "Create Partner-specific Account" described above.
+- If False, then Incomes and Receivables will be posted to the default Odoo Accounts (from default CoA).
 
-If False, then Incomes and Receivables will be posted to the default Odoo Accounts (from default CoA).
+Keep the UI intuitive for the user, avoiding confusion. 
+Assume that they do not know what PSA is, and provide helpful descriptions, at least for the PSA option.
 
 ## Non-Functional Specifications
 - **Performance**: The module should not significantly impact the performance of the Odoo system. Creating Partner-specific Accounts should take less than 1 second under normal system load.
