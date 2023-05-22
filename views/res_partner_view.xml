@@ -1,0 +1,26 @@
+<odoo>
+    <record id="spec_account_res_partner_view_form" model="ir.ui.view">
+        <field name="name">spec.account.res.partner.view.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='property_account_payable_id']" position="after">
+                <button type="object"
+                        name="action_create_spec_account"
+                        string="Create spec accounts"
+                        class="btn btn-primary"/>
+                <field name="spec_account_receivable_id"/>
+                <field name="spec_account_payable_id"/>
+<!--                <field name="use_specific_accounts" widget="boolean_toggle"/>-->
+            </xpath>
+            <xpath expr="//field[@name='property_account_receivable_id']" position="replace">
+                <field name="spec_account_receivable_id"/>
+            </xpath>
+            <xpath expr="//field[@name='property_account_payable_id']" position="replace">
+                <field name="display_account_payable_id"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
