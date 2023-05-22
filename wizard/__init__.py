@@ -1,1 +1,2 @@
-from . import partner_account_wizard
+from . import partner_accounts_wizard
+
