@@ -18,11 +18,9 @@
                 <field name="spec_account_payable_id" attrs="{'invisible': [('show_spec_accounts', '=', False)], 'required': [('spec_account_receivable_id', '!=', False)]}"/>
             </xpath>
             <xpath expr="//field[@name='property_account_receivable_id']" position="replace">
-                <field name="property_account_receivable_id"/>
                 <field name="display_account_receivable_id"/>
             </xpath>
             <xpath expr="//field[@name='property_account_payable_id']" position="replace">
-                <field name="property_account_payable_id"/>
                 <field name="display_account_payable_id"/>
             </xpath>
 
