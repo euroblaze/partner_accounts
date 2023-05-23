@@ -14,7 +14,7 @@ class PartnerAccountWizard(models.TransientModel):
 
     def action_confirm(self):
         active_id = self._context.get('active_id', False)
-        if not active_id:
+        if not active_id or not (self.spec_account_receivable_id and self.spec_account_payable_id):
             return
         partner = self.env['res.partner'].browse(active_id).sudo()
         partner.write({'spec_account_receivable_id': self.spec_account_receivable_id.id,
