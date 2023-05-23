@@ -18,6 +18,9 @@ class PartnerAccountWizard(models.TransientModel):
             return
         partner = self.env['res.partner'].browse(active_id).sudo()
         partner.write({'spec_account_receivable_id': self.spec_account_receivable_id.id,
-                       'spec_account_payable_id': self.spec_account_payable_id.id})
+                       'spec_account_payable_id': self.spec_account_payable_id.id,
+                       'property_account_payable_id': self.spec_account_payable_id.id,
+                       'property_account_receivable_id': self.spec_account_receivable_id.id,
+                       'use_specific_accounts': True})
         return True
 

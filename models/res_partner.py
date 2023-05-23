@@ -41,19 +41,26 @@ class ResPartner(models.Model):
         for rec in self:
             rec.show_spec_accounts = True if rec.spec_account_receivable_id and rec.spec_account_payable_id else False
 
-    def write(self, vals):
-        res = super().write(vals)
-        account_fields = ['use_specific_accounts',
-                          'spec_account_receivable_id',
-                          'spec_account_payable_id',
-                          'display_account_payable_id',
-                          'display_account_receivable_id']
-        if any(field in vals for field in account_fields):
-            for rec in self:
-                if rec.use_specific_accounts and rec.spec_account_receivable_id and rec.spec_account_payable_id:
-                    rec.property_account_payable_id = rec.spec_account_payable_id
-                    rec.property_account_receivable_id = rec.spec_account_receivable_id
-                else:
-                    rec.property_account_payable_id = rec.display_account_payable_id
-                    rec.property_account_receivable_id = rec.display_account_receivable_id
-        return res
+    @api.onchange('display_account_payable_id', 'display_account_receivable_id', 'use_specific_accounts')
+    def _onchange_display_accounts(self):
+        if (self.display_account_payable_id or self.display_account_receivable_id) and not self.use_specific_accounts:
+            self.property_account_payable_id = self.display_account_payable_id
+            self.property_account_receivable_id = self.display_account_receivable_id
+        elif self.use_specific_accounts:
+            self.property_account_payable_id = self.spec_account_payable_id
+            self.property_account_receivable_id = self.spec_account_receivable_id
+
+    @api.onchange('spec_account_receivable_id', 'spec_account_payable_id')
+    def _onchange_spec_accounts(self):
+        if not self.spec_account_receivable_id and not self.spec_account_payable_id:
+            self.use_specific_accounts = False
+        elif self.spec_account_receivable_id and self.spec_account_payable_id and self.use_specific_accounts:
+            self.property_account_payable_id = self.spec_account_payable_id
+            self.property_account_receivable_id = self.spec_account_receivable_id
+
+    @api.model
+    def update_display_partner_accounts(self):
+        for rec in self.env['res.partner'].sudo().search([]):
+            rec.sudo().with_context(install_update=False).write({
+                'display_account_payable_id': rec.property_account_payable_id,
+                'display_account_receivable_id': rec.property_account_receivable_id})
