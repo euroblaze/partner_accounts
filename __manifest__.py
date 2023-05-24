@@ -1,0 +1,18 @@
+{
+    'name': 'Partner-Specific Account Module for Odoo',
+    'version': '1.0',
+    'category': 'Contacts',
+    'summary': 'Partner-Specific Account',
+    'author': 'Simplify-ERP™',
+    'website': 'https://simplify-erp.de',
+    'depends': ['base', 'account', 'contacts'],
+    'data': [
+        'data/data.xml',
+        'security/ir.model.access.csv',
+        'views/res_partner_view.xml',
+        'wizard/partner_accounts_wizard.xml',
+    ],
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+}
