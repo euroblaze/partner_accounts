@@ -16,6 +16,10 @@ User can choose to either use PSA or Odoo's default CoA to store Incomes and Exp
 A new button, "Create Partner-specific Accounts", will be added under `Contact > Invoicing (tab) > Accounting Entries`. 
 This button will trigger the creation of a new set of Partner-specific Accounts in the extended CoA for the selected business partner.
 
+2.2.3 Account Numbers
+
+PSA numbers for Acc. Payable and Acc. Receivable are booked in account numbers defined in `Settings > Technical Settings > Sequences.
+
 ## 3. Functional Specifications
 
 ### 3.1. Partner-specific Accounts
