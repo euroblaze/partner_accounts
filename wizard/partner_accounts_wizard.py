@@ -7,10 +7,11 @@ class PartnerAccountWizard(models.TransientModel):
 
     spec_account_receivable_id = fields.Many2one('account.account', company_dependent=True,
                                                  string="Specific Account Receivable",
-                                                 domain="[('internal_type', '=', 'receivable'), ('deprecated', '=', False), ('company_id', '=', current_company_id)]")
+                                                 domain="[('company_id', '=', current_company_id)]")
     spec_account_payable_id = fields.Many2one('account.account', company_dependent=True,
                                               string="Specific Account Payable",
-                                              domain="[('internal_type', '=', 'payable'), ('deprecated', '=', False), ('company_id', '=', current_company_id)]")
+                                              domain="["
+                                                     "('company_id', '=', current_company_id)]")
 
     def action_confirm(self):
         active_id = self._context.get('active_id', False)

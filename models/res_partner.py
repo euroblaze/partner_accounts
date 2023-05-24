@@ -9,18 +9,18 @@ class ResPartner(models.Model):
     show_spec_accounts = fields.Boolean(compute='compute_show_spec_accounts')
     spec_account_receivable_id = fields.Many2one('account.account',
         string="Specific Account Receivable",
-        domain="[('internal_type', '=', 'receivable'), ('deprecated', '=', False), ('company_id', '=', current_company_id)]")
+        domain="[('company_id', '=', current_company_id)]")
     spec_account_payable_id = fields.Many2one('account.account',
         string="Specific Account Payable",
-        domain="[('internal_type', '=', 'payable'), ('deprecated', '=', False), ('company_id', '=', current_company_id)]")
+        domain="[('company_id', '=', current_company_id)]")
     display_account_receivable_id = fields.Many2one('account.account',
         string="Account Receivable",
-        domain="[('internal_type', '=', 'receivable'), ('deprecated', '=', False), ('company_id', '=', current_company_id)]",
+        domain="[('company_id', '=', current_company_id)]",
         help="This account will be used instead of the default one as the receivable account for the current partner",
         required=True)
     display_account_payable_id = fields.Many2one('account.account',
         string="Account Payable",
-        domain="[('internal_type', '=', 'payable'), ('deprecated', '=', False), ('company_id', '=', current_company_id)]",
+        domain="[('company_id', '=', current_company_id)]",
         help="This account will be used instead of the default one as the payable account for the current partner",
         required=True)
 
