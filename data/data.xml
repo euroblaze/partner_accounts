@@ -6,7 +6,7 @@
         <record id="seq_spec_payable_partner_account" model="ir.sequence">
             <field name="name">PSA</field>
             <field name="code">spec.account.payable</field>
-            <field name="prefix">4</field>
+            <field name="prefix">5</field>
             <field name="padding">4</field>
             <field name="number_next">1</field>
             <field name="number_increment">1</field>
@@ -16,7 +16,7 @@
         <record id="seq_spec_receivable_partner_account" model="ir.sequence">
             <field name="name">PSA</field>
             <field name="code">spec.account.receivable</field>
-            <field name="prefix">5</field>
+            <field name="prefix">4</field>
             <field name="padding">4</field>
             <field name="number_next">1</field>
             <field name="number_increment">1</field>
