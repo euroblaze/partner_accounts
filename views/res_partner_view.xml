@@ -8,14 +8,19 @@
 
             <xpath expr="//field[@name='property_account_payable_id']" position="after">
                 <button type="object"
-                        name="action_create_spec_account"
-                        string="Create Partner-specific Accounts"
+                        name="create_spec_account_receivable"
+                        string="Create Specific Receivable Accounts"
                         class="btn btn-primary"
-                        help="Add accounts to store income and expenditures related to specific business partners."/>
+                        help="Create an account to store income and expenditures related to specific business partner."/>
+                <button type="object"
+                        name="create_spec_account_payable"
+                        string="Create Specific Payable Accounts"
+                        class="btn btn-primary"
+                        help="Create an account to store income and expenditures related to specific business partner."/>
                 <field name="show_spec_accounts" invisible="1"/>
                 <field name="use_specific_accounts" widget="boolean_toggle" attrs="{'invisible': [('show_spec_accounts', '=', False)]}"/>
-                <field name="spec_account_receivable_id" attrs="{'invisible': [('show_spec_accounts', '=', False)], 'required': [('spec_account_payable_id', '!=', False)]}"/>
-                <field name="spec_account_payable_id" attrs="{'invisible': [('show_spec_accounts', '=', False)], 'required': [('spec_account_receivable_id', '!=', False)]}"/>
+                <field name="spec_account_receivable_id" attrs="{'invisible': ['|', ('show_spec_accounts', '=', False), ('spec_account_receivable_id', '=', False)]}" readonly="1"/>
+                <field name="spec_account_payable_id" attrs="{'invisible': ['|', ('show_spec_accounts', '=', False), ('spec_account_payable_id', '=', False)]}" readonly="1"/>
             </xpath>
             <xpath expr="//field[@name='property_account_receivable_id']" position="replace">
                 <field name="display_account_receivable_id"/>
