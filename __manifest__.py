@@ -8,9 +8,7 @@
     'depends': ['base', 'account', 'contacts'],
     'data': [
         'data/data.xml',
-        'security/ir.model.access.csv',
         'views/res_partner_view.xml',
-        'wizard/partner_accounts_wizard.xml',
     ],
     'installable': True,
     'application': False,
