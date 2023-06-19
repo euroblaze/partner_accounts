@@ -54,6 +54,7 @@ class ResPartner(models.Model):
             else self.env['account.account.type'].sudo().search([('type', '=', 'receivable')], limit=1).id
         new_receivable_acc = self.env['account.account'].sudo().with_context(create_spec_account=True).create({
             'name': self.name,
+            'code': self.env['ir.sequence'].next_by_code('seq_spec_receivable_partner_account'),
             'internal_type': 'receivable',
             'deprecated': False,
             'reconcile': True,
@@ -84,6 +85,7 @@ class ResPartner(models.Model):
             else self.env['account.account.type'].sudo().search([('type', '=', 'payable')], limit=1).id
         new_payable_acc = self.env['account.account'].sudo().with_context(create_spec_account=True).create({
             'name': self.name,
+            'code': self.env['ir.sequence'].next_by_code('seq_spec_payable_partner_account'),
             'internal_type': 'payable',
             'reconcile': True,
             'deprecated': False,
