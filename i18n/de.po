@@ -40,7 +40,7 @@ msgstr "Kontakt"
 #. module: partner_accounts
 #: model_terms:ir.ui.view,arch_db:partner_accounts.spec_account_res_partner_view_form
 msgid "Create Specific Payable Accounts"
-msgstr ""
+msgstr "Spezifische Kreditorenkonto anlegen"
 
 #. module: partner_accounts
 #: model_terms:ir.ui.view,arch_db:partner_accounts.spec_account_res_partner_view_form
